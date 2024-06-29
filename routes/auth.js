@@ -6,7 +6,7 @@ router.post("/register", async (req, res) => {
   try {
     const { email, username, password } = req.body;
     const hashpassword = bcrypt.hashSync(password);
-    const user = new User({ email, username, password: hashpassword });
+    const user = new User({ email, username, password: hashpassword, role: role || "admin"});
     await user
       .save()
       .then(() => res.status(200).json({ message: "Sign Up Successfull" }));
